@@ -3,8 +3,8 @@ package com.example.virtualplant
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,16 +12,12 @@ class MainActivity : AppCompatActivity() {
     var plantWatered: Boolean = false
     var daysNotWatered: Int = 0
     var plantSize: Int = 0
+    var timePlanted: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val tvDaysNotWatered = findViewById<TextView>(R.id.tvDaysNotWatered)
-        val tvPlantSize = findViewById<TextView>(R.id.tvPlantSize)
-        val btnWaterPlant = findViewById<Button>(R.id.btnWater)
-
-        anotherDay()
     }
 
     fun anotherDay(){
@@ -33,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                     2 -> plantSize++
                     3 -> plantSize++
                 }
+                tvPlantSize.setText("Plant size $plantSize")
             }
             if(plantWatered && daysNotWatered != 0){
                 daysNotWatered--
@@ -42,13 +39,35 @@ class MainActivity : AppCompatActivity() {
                     plantDead = true
                 }
             }
+            tvDaysNotWatered.setText("Days not watered $daysNotWatered")
         }
         plantWatered = true
-
     }
 
     fun waterPlant(view: View){
-        println("Watering plant")
+        btnWater.visibility = View.INVISIBLE
+        plantWatered = true
+        if(timePlanted == 0.toLong()){
+            timePlanted = Calendar.getInstance().timeInMillis
+        }else{
+            timePlanted += 10000
+            while(getDiff() > 1000){
+                timePlanted += 10000
+            }
+        }
+        anotherDay()
+    }
+
+    override fun onResume() {
+        super.onResume()
+            if (getDiff() > 10000) {
+                btnWater.visibility = View.VISIBLE
+            }
+    }
+
+    fun getDiff() : Long {
+        val now: Long = Calendar.getInstance().timeInMillis
+        return now - timePlanted
     }
 
 }
