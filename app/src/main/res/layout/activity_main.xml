@@ -14,23 +14,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-    <TextView
-            android:id="@+id/tvDaysNotWatered"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Days not watered"/>
+    <!--<TextView-->
+            <!--android:id="@+id/tvDaysNotWatered"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Days not watered"/>-->
 
-    <TextView
-            android:id="@+id/tvPlantSize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Plant size"/>
+    <!--<TextView-->
+            <!--android:id="@+id/tvPlantSize"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Plant size"/>-->
 
-    <TextView
-            android:id="@+id/tvPlantDead"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Plant dead"/>
+    <!--<TextView-->
+            <!--android:id="@+id/tvPlantDead"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Plant dead"/>-->
 
     <ImageView
             android:id="@+id/imgPlant"
