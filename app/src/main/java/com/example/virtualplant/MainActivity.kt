@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     var plantSize: Int = 0
     var timePlanted: Long = 0
     val dayInMillis: Long = 86400000
+    var daysOut: Int = 0
     val TAG: String = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
             }
 //            tvPlantSize.setText("Plant size $plantSize")
             //if plant not watered on previous day it's health is reduced. 0 == healthy, 4 == dead
+            Log.d(TAG, "plantHealth: " + plantHealth)
             if (!plantWatered) {
                 plantHealth++
 //                tvDaysNotWatered.setText("Days not watered $plantHealth")
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity() {
 //                    tvPlantDead.setText("Plant dead $plantDead")
                 }
             }
+            Log.d(TAG, "plantHealth: " + plantHealth)
         }
         //water button returns every day
         btnWater.visibility = View.VISIBLE
@@ -161,8 +164,13 @@ class MainActivity : AppCompatActivity() {
 //            tvDaysNotWatered.setText("Days not watered $plantHealth")
 //            tvPlantDead.setText("Plant dead $plantDead")
         } else if (getDiff() > dayInMillis) {
-            anotherDay()
-            timePlanted += dayInMillis
+            daysOut = (getDiff() / dayInMillis).toInt()
+            Log.d(TAG, "daysOut: " + daysOut)
+            for(i in 1..daysOut){
+                anotherDay()
+            }
+//            anotherDay()
+            timePlanted += (dayInMillis * daysOut)
         }
     }
 
